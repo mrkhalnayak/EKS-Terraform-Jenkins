@@ -1,6 +1,6 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "19.15.1"
+  version = "20.14.0"
 
   cluster_name                   = local.name
   cluster_endpoint_public_access = true
@@ -23,8 +23,8 @@ module "eks" {
 
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    ami_type       = "AL2_x86_64"
-    instance_types = ["m5.large"]
+    ami_type       = "ami-080660c9757080771"
+    instance_types = ["t2.medium"]
 
     attach_cluster_primary_security_group = true
   }
@@ -35,7 +35,7 @@ module "eks" {
       max_size     = 2
       desired_size = 1
 
-      instance_types = ["t3.large"]
+      instance_types = ["t2.medium"]
       capacity_type  = "SPOT"
 
       tags = {
